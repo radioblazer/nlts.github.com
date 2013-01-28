@@ -1,5 +1,33 @@
+* {
+    padding: 0; 
+	margin: 0; 
+	text-rendering: optimizeSpeed;
+	-webkit-font-smoothing: none;
+}
+a {
+	color: red !important;
+	text-decoration: underline;
+}
+a:hover {
+	text-decoration: none;
+}
+body {
+	overflow: hidden;
+}
+ 
+body * { 
+	font-size: 12px;
+	line-height: 16px;
+	font-family: "Courier New";
+	color: #444;
+} 
+body.smaller * {
+	font-size: 11px;
+	line-height: 15px;
+}
+ 
 #fluid {
-    color: red;
+	color: red;
 	white-space: pre;
 	width: auto;
 	height: auto;
