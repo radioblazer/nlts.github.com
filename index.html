@@ -2,137 +2,29 @@
 layout: default
 title: not like the sun
 ---
-    <div id="overlay">
-		<br/>
-		<br/>
-        <div id="card">
-    <img src="/images/inline-nlts-610.png" width="610" height="65"/>
-    <h1>About</h1>
-    <div>I'm Matthew, a Computer Science undergrad at Georgia Tech. <a href="mailto:matt@nlts.co">Feel free to say hi.</a>.</div>
-    <br>
-    <h1>Projects</h1>
-    <h2>Send from Omnibox</h2>
-    <img src="/images/inline-omnibox.png" width="610" height="65"/>
-    <div><a href="http://github.com/nlts/Send-from-Omnibox/">Github</a> ▪ <a href="https://chrome.google.com/webstore/detail/send-from-omnibox/pfebpahfiklkbdgdacdcdojjejhpbkgc">Chrome Web Store</a>
-        <p>Compose an email in Chrome's address bar. Works best with Gmail.</p>
-        <p></p>Built using Javascript and the chrome.windows API.</p>
-    </div>
-    <h2>broadcast.to</h2>
-    <div>Github (coming soon!) ▪ <a href="http://signup.broadcast.to">Landing Page</a>
-        <p>Send emails to and manage records of members in your service club or other organization.</p>
-        <p>Built using Django and Mailgun.</p>
-    </div>
-    <h2>Idea Catalogue</h2>
-    <div>Github (coming soon!)
-        <p>“Idea Catalogue” is a web application that allows a user to efficiently create, organize, and navigate ideas and files. An “Idea” is a text file that can contain files, hyperlinks, and wiki-like internal links to other Ideas. Ideas and files can be searched, tagged, and shared. A network graph allows the entire catalogue to be displayed and explored within one page, and a tag cloud lets common tags be accessed quickly.</p>
-        <p>Built using Django, <a href="http://hallojs.org/">hallo.js</a>, and jQuery.</p>        
-    </div>
-		<div id="controls">
-			<br/>
-			<button id="clear">"Disappear!"</button><br/>
-			<br/>
-		</div>
-    </div>
 
-	<p id="fluid" unselectable="on"></p>
-	<div id="fps">fps: 0</div>
+<div id="head">
+<img src="/images/inline-nlts-610.png" width="610" height="65"/>
+<h1>About</h1>
+<div>I'm Matthew, a Computer Science undergrad at Georgia Tech. <a href="mailto:matt@nlts.co">Feel free to say hi.</a>.</div>
+<br>
+<h1>Projects</h1>
+<h2>Send from Omnibox</h2>
+<img src="/images/inline-omnibox.png" width="610" height="65"/>
+<div><a href="http://github.com/nlts/Send-from-Omnibox/">Github</a> ▪ <a href="https://chrome.google.com/webstore/detail/send-from-omnibox/pfebpahfiklkbdgdacdcdojjejhpbkgc">Chrome Web Store</a>
+    <p>Compose an email in Chrome's address bar. Works best with Gmail.</p>
+    <p></p>Built using Javascript and the chrome.windows API.</p>
+</div>
+<h2>broadcast.to</h2>
+<div>Github (coming soon!) ▪ <a href="http://signup.broadcast.to">Landing Page</a>
+    <p>Send emails to and manage records of members in your service club or other organization.</p>
+    <p>Built using Django and Mailgun.</p>
+</div>
+<h2>Idea Catalogue</h2>
+<div>Github (coming soon!)
+    <p>“Idea Catalogue” is a web application that allows a user to efficiently create, organize, and navigate ideas and files. An “Idea” is a text file that can contain files, hyperlinks, and wiki-like internal links to other Ideas. Ideas and files can be searched, tagged, and shared. A network graph allows the entire catalogue to be displayed and explored within one page, and a tag cloud lets common tags be accessed quickly.</p>
+    <p>Built using Django, <a href="http://hallojs.org/">hallo.js</a>, and jQuery.</p>        
+</div>
+</div>
 
 
-<script type="text/javascript" src="/js/fluid.solver.js"></script>
-<script type="text/javascript" src="/js/fluid.display.ascii.js"></script>
-<script type="text/javascript">
-jQuery(document).ready(function($) {
- 
-    var fluid 
-		, el 
-		, display
-		, displayFPS
-	
-	// physics solver
-	
-	fluid = new FluidField();	
-	
-	
-	// display DOM element
-	
-	el = document.getElementById('fluid');
-		
-	$(window)
-		.resize(function(e) {
-			var glyphDims = (function() {
-				var $dummy = $(el).clone().text('M').css({visibility: 'hidden'}).appendTo('body');
-				var retval = {
-					width: 	$dummy.width(),
-					height: parseInt( $dummy.css('line-height'), 10 ) // more reliable than height()
-				};
-				$dummy.remove();
-				return retval;
-			})();
-			
-			// this won't be perfect, as the screen dims won't often be evenly disible
-			fluid.setResolution(Math.round($(window).height() / glyphDims.height), Math.round($(window).width() / glyphDims.width));
-		})
-		.trigger('resize');
-	
-	
-	
-	// display component
-	
-	display = new FluidDisplayASCII(fluid)
-	display.bindElement(el)
-	
-	displayFPS = function() {
-		var frames = 0
-			, time_start = new Date()
-			, $DOMfps = $('#fps')
- 
-		$DOMfps.show()
-				
-		return function(frame) {
-			var time_end = new Date()
- 
-			frames++
-			
-			
-			if ((time_end - time_start) >= 1000) {		
-				$DOMfps.text('fps: ' + Math.round((1000 * frames / (time_end - time_start))))
-			
-				time_start = time_end
-				frames = 0
-			}
-		}
-	}
-	
-	// final configuration
-	//fluid.setIterations(15);
-	//display.Config.density = 260;
-	fluid.setIterations(5)
-	display.Config.density = 180
-	
-	
-	display.Animation.start( /*displayFPS()*/ )
-			
-	
-	
-	// rest of initation
- 
-	
-	$('#overlay').hide().fadeTo('slow', 1)
-	
-	
-	$('button#clear').mousedown(function(e) {
-		var $el = $(el)
- 
-		$el
-			.addClass('fading')
-			.fadeOut('medium', function() {
-				fluid.reset()
-				$el
-					.removeClass('fading')
-					.fadeIn('fast')
-			})
-		
-	})
-	
-})
-</script>
