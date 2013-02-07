@@ -3,34 +3,174 @@ layout: default
 title: not like the sun
 ---
 
-<div id="head">
-<img src="/images/inline-nlts-610.png" width="610" height="65"/>
-<h1>About</h1>
-<div>I'm Matthew, a Computer Science undergrad at Georgia Tech. <a href="mailto:matt@nlts.co">Feel free to say hi.</a>.</div>
-<br>
-<h1>Projects</h1>
-<h2>Send from Omnibox</h2>
-<a href="mailto:matt@nlts.co?subject=What's up?" target="_blank">
-<img src="/images/inline-omnibox.png" width="610" height="65"/></a>
-<div><a href="http://github.com/nlts/Send-from-Omnibox/">Github</a> ▪ <a href="https://chrome.google.com/webstore/detail/send-from-omnibox/pfebpahfiklkbdgdacdcdojjejhpbkgc">Chrome Web Store</a>
-    <p>Compose an email in Chrome's address bar. Works best with Gmail.</p>
-    <p></p>Built using Javascript and the chrome.windows API.</p>
-</div>
-<h2>Georgia Tech CS Collective</h2>
-<div><a href="http://tinyletter.com/cs-collective">Sign-up Page</a>
-    <p>A newsletter experiment that aims to create a moderated 'switchboard' for project collaboration between Tech students.</p>
-    <p>Uses Mailchimp's <a href="http://tinyletter.com/">Tinyletter</a> platform; when larger, will probably use <a href="http://www.redmine.org/">Redmine</a> or an in-house solution.</p>
-</div>
-<h2>broadcast.to</h2>
-<div>Github (coming soon!) ▪ <a href="http://signup.broadcast.to">Landing Page</a>
-    <p>Send emails to and manage records of members in your service club or other organization.</p>
-    <p>Built using Django and Mailgun.</p>
-</div>
-<h2>Idea Catalogue</h2>
-<div>Github (coming soon!)
-    <p>“Idea Catalogue” is a web application that allows a user to efficiently create, organize, and navigate ideas and files. An “Idea” is a text file that can contain files, hyperlinks, and wiki-like internal links to other Ideas. Ideas and files can be searched, tagged, and shared. A network graph allows the entire catalogue to be displayed and explored within one page, and a tag cloud lets common tags be accessed quickly.</p>
-    <p>Built using Django, <a href="http://hallojs.org/">hallo.js</a>, and jQuery.</p>        
-</div>
-</div>
+<div id="overlay">
+    <div id="card"><br><br>
+        <img src="/images/inline-nlts-610.png" width="610" height="65"/>
+        <div id = "intro">I'm Matthew, a Computer Science undergrad at Georgia Tech. 
+            <br><a href="mailto:matt@nlts.co">email</a> ▪ <a href= "https://github.com/nlts">github</a></div><br>
+        <h1>Projects:</h1><br> <br>
+            <h2>Send from Omnibox</h2>
+            <a href="mailto:matt@nlts.co?subject=What's up?" target="_blank">
+            <img src="images/inline-omnibox.png" width="610" height="65"/></a>
+            <div><a href="http://github.com/nlts/Send-from-Omnibox/">Github</a> ▪ <a href="https://chrome.google.com/webstore/detail/send-from-omnibox/pfebpahfiklkbdgdacdcdojjejhpbkgc">Chrome Web Store</a>
+                <p>Compose an email in Chrome's address bar. Works best with Gmail.</p>
+                <p>Built using Javascript and the chrome.windows API.</p>
+            </div><br>
+            <h2>Georgia Tech CS Collective</h2>
+            <div><a href="http://tinyletter.com/cs-collective">Sign-up Page</a>
+                <p>A newsletter experiment that aims to create a moderated 'switchboard' for project collaboration between Tech students.</p><br><br>
+                <p>Uses Mailchimp's <a href="http://tinyletter.com/">Tinyletter</a> platform; when larger, will probably use <a href="http://www.redmine.org/">Redmine</a> or an in-house solution.</p>
+            </div>
+            <br>
+            <h2>broadcast.to</h2>
+            <div>Github (coming soon!) ▪ <a href="http://signup.broadcast.to">Landing Page</a>
+            <p>Send emails to and manage records of members in your service club.</p><br><br>
+            <p>Built using Django and Mailgun.</p>
+            </div><br>
+            <h2>Idea Catalogue</h2>
+            <div>Github (coming soon!)
+                <p>“Idea Catalogue” is a web application that allows a user to efficiently create, organize, and navigate ideas and files. An “Idea” is a text file that can contain files, hyperlinks, and wiki-like internal links to other Ideas. Ideas and files can be searched, tagged, and shared. A network graph allows the entire catalogue to be displayed and explored within one page, and a tag cloud lets common tags be accessed quickly.</p><br><br>
+                <p>Built using Django, <a href="http://hallojs.org/">hallo.js</a>, and jQuery.</p>        
+            </div> <br><br>
+		</div>
+		<br/>
+	<div id="controls">
+		<br/>
+		<button id="clear">"Disappear!"</button><br/>
+		<br/>
+	</div>
+	</div>
+	
+	<p id="fluid" unselectable="on"></p>
+	<div id="fps">fps: 0</div>
+	
+<script type="text/javascript" src="/js/fluid.solver.js"></script>
+<script type="text/javascript" src="/js/fluid.display.ascii.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+
+	var fluid 
+		, el 
+		, display
+		, displayFPS
+	
+	// physics solver
+	
+	fluid = new FluidField();	
+	
+	
+	// display DOM element
+	
+	el = document.getElementById('fluid');
+		
+	$(window)
+		.resize(function(e) {
+			var glyphDims = (function() {
+				var $dummy = $(el).clone().text('M').css({visibility: 'hidden'}).appendTo('body');
+				var retval = {
+					width: 	$dummy.width(),
+					height: parseInt( $dummy.css('line-height'), 10 ) // more reliable than height()
+				};
+				$dummy.remove();
+				return retval;
+			})();
+			
+			// this won't be perfect, as the screen dims won't often be evenly disible
+			fluid.setResolution(Math.round($(window).height() / glyphDims.height), Math.round($(window).width() / glyphDims.width));
+		})
+		.trigger('resize');
+	
+	
+	
+	// display component
+	
+	display = new FluidDisplayASCII(fluid)
+	display.bindElement(el)
+	
+	displayFPS = function() {
+		var frames = 0
+			, time_start = new Date()
+			, $DOMfps = $('#fps')
+
+		$DOMfps.show()
+				
+		return function(frame) {
+			var time_end = new Date()
+
+			frames++
+			
+			
+			if ((time_end - time_start) >= 1000) {		
+				$DOMfps.text('fps: ' + Math.round((1000 * frames / (time_end - time_start))))
+			
+				time_start = time_end
+				frames = 0
+			}
+		}
+	}
+	
+	// final configuration
+	//fluid.setIterations(15);
+	//display.Config.density = 260;
+	fluid.setIterations(5)
+	display.Config.density = 180
+	
+	
+	display.Animation.start( displayFPS() )
+			
+	
+	
+	// rest of initation
+
+	
+	$('#overlay').hide().fadeTo('slow', 1)
+	
+	
+	$('button#clear').mousedown(function(e) {
+		var $el = $(el)
+
+		$el
+			.addClass('fading')
+			.fadeOut('medium', function() {
+				fluid.reset()
+				$el
+					.removeClass('fading')
+					.fadeIn('fast')
+			})
+		
+	})
+	
+})
+</script>
+
+<!--
+ Portions of this page (c) 2012 Nick Kwiatek - the HTML of this
+ site borrows heavily from his original MIT licensed code,
+ and some of his modifications to Oliver Hunt's fluid.js have been kept.
+
+ Copyright (c) 2009 Oliver Hunt <http://nerget.com>
+ 
+ Permission is hereby granted, free of charge, to any person
+ obtaining a copy of this software and associated documentation
+ files (the "Software"), to deal in the Software without
+ restriction, including without limitation the rights to use,
+ copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the
+ Software is furnished to do so, subject to the following
+ conditions:
+ 
+ The above copyright notice and this permission notice shall be
+ included in all copies or substantial portions of the Software.
+ 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ OTHER DEALINGS IN THE SOFTWARE.
+-->
+
 
 
