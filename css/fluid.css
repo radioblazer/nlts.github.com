@@ -1,11 +1,11 @@
 * {
-    padding: 0; 
+	padding: 0; 
 	margin: 0; 
 	text-rendering: optimizeSpeed;
 	-webkit-font-smoothing: none;
 }
 a {
-	color: red !important;
+	color: rgb(65, 152, 195) !important;
 	text-decoration: underline;
 }
 a:hover {
@@ -13,8 +13,10 @@ a:hover {
 }
 body {
 	overflow: hidden;
+	width: auto;
+	background-color: rgb(65, 152, 195);
 }
- 
+
 body * { 
 	font-size: 12px;
 	line-height: 16px;
@@ -25,9 +27,9 @@ body.smaller * {
 	font-size: 11px;
 	line-height: 15px;
 }
- 
+
 #fluid {
-	color: red;
+	color: white;
 	white-space: pre;
 	width: auto;
 	height: auto;
@@ -55,14 +57,14 @@ body.smaller * {
 	padding: 10px;
 	display: none;
 }
- 
+
 .js #overlay { 
 	display: none;
 }
 #overlay {
 	position: absolute;
 	top: 63px;
-	left: 70px;
+	left: 25%;
 	pointer-events: none;
 	z-index: 100;
 }
@@ -73,7 +75,7 @@ body.smaller * {
 		pointer-events: auto;
 	}
 	#card {
-		width: 287px;
+		width: 610px;
 	}
 	#controls {
 		display: inline-block;
@@ -82,11 +84,25 @@ body.smaller * {
 	body.smaller #overlay {
 		top: 61px;
 	}
- 
-h1, h2, p  {	
+#intro {
+	text-align: center;
+	font-size: 13px;
+}
+
+#intro a {
+	font-size: 13px !important;
+
+}
+
+
+h1, h2, p  {
 	display: inline-block;
 }
+h1 {
+	font-size: 20px !important;
+}
 h2 {
+	font-size: 16px !important;
 	font-weight: normal;
 }
 dd {
@@ -97,14 +113,14 @@ dt {
 	font-style: italic;
 	text-align: right;
 }
- 
- 
+
+
 button#clear {
-	background: red;
+	background: rgb(65, 152, 195);
 	color: white;
 	font-weight: bold;
 	padding: 6px 7px;
-	border: 1px solid rgb(240, 0, 0);
+	border: 1px solid rgb(65, 152, 195);
 	cursor: pointer;
 	-webkit-box-shadow: 	2px 2px 0px 0px rgb(210, 210, 210);
 	-moz-box-shadow: 		2px 2px 0px 0px rgb(210, 210, 210);
