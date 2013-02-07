@@ -27,7 +27,7 @@
  
  (function(window) {
  
-    var FluidDisplayASCII = function(fluid) {
+	var FluidDisplayASCII = function(fluid) {
 		
 		var _Config = {
 		
@@ -38,7 +38,7 @@
 			//gradient: [' ', 'Â·','.','â€¢','Â¤','x','X','N','M'],
 			//gradient: [' ', 'Â·','.','Â¤','x','X','N','M','Â¶'],
 			//gradient: [' ', 'Â·','~','Â¢','Â»','Â¤','X','Â¥','Â¶'],
-			, gradient: [' ', 'Â·','~','Â¢','c','Â»','Â¤','X','M','Â¶']
+			, gradient: [' ', '·','^','¤','`','*','`','»','Â','~']
 			
 			// animation update timing in milliseconds
 			, tickrate: 15
@@ -143,8 +143,8 @@
 		// TODO: addForce, generalize the mouse calculation operation into a func
 		// onclick: force
 		// take setUI on force obj out of display renderer
- 
- 
+
+
 		// store the bound DOM element inside this object's scope
 		this.bindElement = function(DOMElement) {
 		
@@ -163,14 +163,14 @@
 				} while (el = el.offsetParent);
 				return { x: x, y: y };
 			})(DOMElement);
- 
+
 			
 			DOMElement.unselectable = true;
 			
 			DOMElement.onmousedown = (function() {
 				checkMouseClick = true;
 			})
- 
+
 			DOMElement.onmousemove = (function() {
 				var doc_body = window.document.body;
 				var doc_element = window.document.documentElement;
@@ -205,7 +205,7 @@
 			// called on fluid's update() method (before physics calculations)
 			// we can make changes to the field here
 			fluid.setUICallback(function(field) {
- 
+
 				// click explosion
 				if (checkMouseClick) {
 					var x_fluid
@@ -214,7 +214,7 @@
 						, deHeight = DOMElement.offsetHeight
 						, fWidth = field.width()
 						, fHeight = field.height()
- 
+
 					// map element coords to fluid coords
 					x_fluid = (mouse_cur.x * (fWidth / deWidth)) + 0.5 | 0 // bitwise round
 					y_fluid = (mouse_cur.y * (fHeight / deHeight)) + 0.5 | 0 // bitwise round
@@ -229,12 +229,12 @@
 							field.setVelocity(x_fluid + w, y_fluid + h, _Config.blastVelocity * w, _Config.blastVelocity * h)
 						}
 					}
- 
+
 					checkMouseClick = false
 				}
- 
- 
- 
+
+
+
 				// add velocity if the mouse has moved within the body of the display
 				if (checkMouseMovement /*&& mouse_prev != null*/) {
 								
@@ -345,6 +345,6 @@
 		};
 		
 	};
- 
+
 	window['FluidDisplayASCII'] = FluidDisplayASCII;
 })(window);
