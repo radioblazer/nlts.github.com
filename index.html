@@ -27,39 +27,40 @@ title: not like the sun
 			<br>
 		</article>
 	</div>
-	
-	<script src="js/meny.min.js"></script>
-	<script>
-	// Create an instance of Meny
-	var meny = Meny.create({
-		// The element that will be animated in from off screen
-		menuElement: document.querySelector( '.meny' ),
-	
-		// The contents that gets pushed aside while Meny is active
-		contentsElement: document.querySelector( '.contents' ),
-	
-		// [optional] The alignment of the menu (top/right/bottom/left)
-		position: Meny.getQuery().p || 'left',
-	
-		// [optional] The height of the menu (when using top/bottom position)
-		height: 200,
-	
-		// [optional] The width of the menu (when using left/right position)
-		width: 640,
-	
-		// [optional] Distance from mouse (in pixels) when menu should open
-		threshold: 40
-	});
-	
-	// API Methods:
-	// meny.open();
-	// meny.close();
-	// meny.isOpen();
-	
-	// Events:
-	// meny.addEventListener( 'open', function(){ console.log( 'open' ); } );
-	// meny.addEventListener( 'close', function(){ console.log( 'close' ); } );
-	</script>
+</div>
+
+<script src="js/meny.min.js"></script>
+<script>
+// Create an instance of Meny
+var meny = Meny.create({
+	// The element that will be animated in from off screen
+	menuElement: document.querySelector( '.meny' ),
+
+	// The contents that gets pushed aside while Meny is active
+	contentsElement: document.querySelector( '.contents' ),
+
+	// [optional] The alignment of the menu (top/right/bottom/left)
+	position: Meny.getQuery().p || 'left',
+
+	// [optional] The height of the menu (when using top/bottom position)
+	height: 200,
+
+	// [optional] The width of the menu (when using left/right position)
+	width: 640,
+
+	// [optional] Distance from mouse (in pixels) when menu should open
+	threshold: 40
+});
+
+// API Methods:
+// meny.open();
+// meny.close();
+// meny.isOpen();
+
+// Events:
+// meny.addEventListener( 'open', function(){ console.log( 'open' ); } );
+// meny.addEventListener( 'close', function(){ console.log( 'close' ); } );
+</script>
 
 
 
