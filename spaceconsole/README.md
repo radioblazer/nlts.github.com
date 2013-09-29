@@ -1,5 +1,7 @@
 ![example](http://i.imgur.com/I5yGmTb.png)
 
+Try it out: http://notlikethesun.com/spaceconsole
+
 The text editor of choice for dramatic and/or space-themed writing.
 
 Features:
