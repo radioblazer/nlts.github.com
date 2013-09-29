@@ -1,0 +1,18 @@
+
+body  {margin:0;padding:0;background-color:#000000;overflow:hidden}
+div   {margin:0;padding:0;position:absolute;overflow:hidden}
+canvas{background-color:#000000;overflow:hidden}
+
+#textbox {
+  position:absolute;
+  width:500px;
+  height:400px;
+  z-index:15;
+  top:50%;
+  left:50%;
+  margin:-200px 0 0 -250px;
+  color:#F5F5F5;
+  outline: 0px solid transparent;
+  font-size: 1.2em;
+  font-family: 'Lato', sans-serif;
+}
