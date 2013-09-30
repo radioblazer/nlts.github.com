@@ -7,6 +7,7 @@ The CPU-intensive text editor of choice for dramatic and/or space-themed writing
 Features:
 * Scroll up or down to change the speed of the starfield.
 * Bold or italicize text with ```ctrl-b``` and ```ctrl-i```.
+* There are no other features.
 
 Planned features:
 * Use of Sanitize.js to ensure that only plaintext can be pasted into the contenteditable div,
