@@ -3,6 +3,6 @@ nlts.github.com
 
 This is a jekyll site forked from [mojombo](https://github.com/mojombo/mojombo.github.com). 
 
-Uses the excellent [Meny](https://github.com/hakimel/Meny) for the Projects page.
+It uses [Meny](https://github.com/hakimel/Meny) for the animation on the home page. 
 
-Everything is MIT licensed except for the _posts/ and images/ directories, which I retain the copyright for. 
+MIT licensed, with the exception of the [Starfield javascript](https://github.com/nlts/nlts.github.com/tree/master/spaceconsole), which belongs to Christophe Résigne.
