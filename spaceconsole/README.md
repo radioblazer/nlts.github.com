@@ -9,6 +9,8 @@ Features:
 * Bold or italicize text with ```ctrl-b``` and ```ctrl-i```.
 
 Planned features:
+* Use of Sanitize.js to ensure that only plaintext can be pasted into the contenteditable div,
+  instead of messy HTML. Currently, pasting in anything other than plaintext looks odd.  
 * Use of the jQuery terminal emulator http://terminal.jcubic.pl/
 * Dropbox saving/syncing
 
