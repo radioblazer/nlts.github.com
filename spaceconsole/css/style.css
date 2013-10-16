@@ -1,6 +1,5 @@
-
 body  {margin:0;padding:0;background-color:#000000;overflow:hidden}
-div   {margin:0;padding:0;position:absolute;overflow:hidden}
+div   {margin:0;padding:0;overflow:hidden}
 canvas{background-color:#000000;overflow:hidden}
 
 #textbox {
