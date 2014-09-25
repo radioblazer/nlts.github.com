@@ -1,0 +1,112 @@
+<!-- Authors: Matthew Townsend and Rahul Singh -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Population Pyramid</title>
+        <link href="nv.d3.css" rel="stylesheet" type="text/css">
+        <script src="d3.v3.js"></script>
+        <script src="nv.d3.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <style>
+          body {
+            overflow-y:scroll;
+          }
+          #chart svg {
+            height: 400px;
+          }
+          #chart {
+              min-width: 100px;
+              min-height: 100px;
+              float:left;
+              margin-top: -40px;
+              width: 79%;
+
+          }
+          #pieChart {
+              width: 20%;
+              margin-top: -30px;
+              min-width: 60px;
+              float:right;
+          }
+          #workingPieChart {
+            width: 20%;
+            margin-top: -30px;
+            min-width: 60px;
+            float: right;
+          }
+          #youngerPieChart {
+            width: 20%;
+            margin-top: -30px;
+            min-width: 60px;
+            float: right;
+          }
+          #leftLabel {
+            float:left;
+            padding-left: 20%;
+          }
+          #centerDiv {
+            font-size: 2em;
+            padding-right: 20%
+          }
+          #rightLabel {
+            float:right;
+            padding-right: 40%;
+          }
+
+        </style>
+    </head>
+    <body>
+      <div id="centerDiv" class="text-center">Population breakdown of <div id="centerLabel"></div></div>
+     
+      <div id="leftLabel">Males</div>
+      <div id="rightLabel">Females</div>
+      <div id="chart" class='with-3d-shadow with-transitions'>
+        <svg></svg>
+      </div>
+      <div id="youngerPieChart" class='with-3d-shadow with-transitions'>
+        <svg></svg>
+      </div>
+      <div id="workingPieChart" class='with-3d-shadow with-transitions'>
+        <svg></svg>
+      </div>
+      <div id="pieChart" class='with-3d-shadow with-transitions'>
+        <svg></svg>
+      </div>
+
+
+      <div style="float:left; margin-left:2%; margin-top=10px">
+        <div class="btn-group">
+          <button type="button" class="btn btn-default" value=1850>1850</button>
+          <button type="button" class="btn btn-default" value=1860>1860</button>
+          <button type="button" class="btn btn-default" value=1870>1870</button>
+          <button type="button" class="btn btn-default" value=1880>1880</button>
+          <button type="button" class="btn btn-default" value=1900>1900</button>
+          <button type="button" class="btn btn-default" value=1910>1910</button>
+          <button type="button" class="btn btn-default" value=1920>1920</button>
+          <button type="button" class="btn btn-default" value=1930>1930</button>
+          <button type="button" class="btn btn-default" value=1940>1940</button>
+          <button type="button" class="btn btn-default" value=1950>1950</button>
+          <button type="button" class="btn btn-default" value=1960>1960</button>
+          <button type="button" class="btn btn-default" value=1970>1970</button>
+          <button type="button" class="btn btn-default" value=1980>1980</button>
+          <button type="button" class="btn btn-default" value=1990>1990</button>
+          <button type="button" class="btn btn-default" value=2000>2000</button>
+          <button type="button" value="Stop" class="btn btn-default">◼ Stop</button>
+          <button type="button" value="Play" class="btn btn-default">► Play</button>
+
+
+
+        </div>
+      </div>
+
+
+
+
+
+    </body>
+    <script src="viz.js"></script>
+
+</html>
